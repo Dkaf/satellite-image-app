@@ -3,9 +3,45 @@ html, body {
 	padding: 0;
 	height: 100%;
 	width:  100%;
+	font-family: 'Roboto', sans-serif;
+	background-color: rgb(235, 235, 235);
+}
+
+header {
+	text-align: center;
+	text-transform: capitalize;
 }
 
 #map {
-	height: 50%;
-	width: 50%;
+	height: 75%;
+	width: 75%;
+	margin: 0 auto;
+}
+
+.dateRange {
+	text-align: center;
+	margin-top: 40px;
+}
+
+.rangeLabel {
+	font-size: 30px;
+	text-transform: uppercase;
+}
+
+.yearSelect {
+	height: 35px;
+	width: 105px;
+	font-size: 30px;
+	border: none;
+	background: none;
+}
+
+#submit_button {
+	height: 35px;
+	width: 105px;
+	font-size: 1.75em;
+}
+
+.pageButton {
+	display: none;
 }

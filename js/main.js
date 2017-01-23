@@ -1,17 +1,20 @@
 var assetsUrl = 'https://api.nasa.gov/planetary/earth/assets'
 var imageUrl = 'https://api.nasa.gov/planetary/earth/imagery'
-var nasaKey = 'API_KEY'
+var nasaKey = 'IIbcHBMlLJD6P8iqkyVoxNB4LDT9yt7h9rz5OPUy'
 var assetResults = [];
 var page = 1;
 var lat = 0;
 var long = 0;
+var markers = [];
 
 $(document).ready(function(){
 	$('#pageForward').on('click', function(){
+		$('#nasa_images img').remove();
 		page += 1;
 		fetchResults();
 	})
 	$('#pageBack').on('click', function(){
+		$('#nasa_images img').remove();
 		page -= 1;
 		fetchResults();
 	})
@@ -36,7 +39,7 @@ var fetchResults = function(){
 			},
 			success: function(results){
 				console.log(results);
-				$('#nasa_images').append($("<img>", {"src":results.url}));
+				$('#nasa_images').append($("<img>", {"src":results.url, "class":"satellite_img"}));
 			}
 		})
 	}
@@ -50,37 +53,49 @@ function initMap() {
 				 zoom: 8
 			 });
 
-			 var marker = new google.maps.Marker({
-				 position: map.latLng,
-				 map: map
-			 })
+			 function removeMarkers() {
+				 for(i=0; i<markers.length; i++) {
+					 markers[i].setMap(null);
+				 }
+			 }
+
 
 			 map.addListener('click', function(e){
-
+				 removeMarkers();
+				 markers = [];
+				 var marker = new google.maps.Marker({
+					 position: e.latLng,
+					 map: map
+				 })
+				 markers.push(marker);
 			 })
 
 			 map.addListener('click', function(e) {
 				 lat = e.latLng.lat;
 				 long = e.latLng.lng;
 				 console.log(e.latLng.toJSON());
-				 $.ajax({
-					method: "GET",
-  			 		url: assetsUrl,
-  					data: {
-						lat: e.latLng.lat,
-						lon: e.latLng.lng,
-						// begin: startYear-01-01,
-						// end: endYear-01-01,
-						api_key: nasaKey
-					},
-					success: function(results){
-						assetResults = results.results;
-						console.log(results);
-						fetchResults();
-					}
-				}).done(function() {
-						console.log("complete")
-				});
+
 			 })
 
 		 }
+
+$("#submit_button").on('click', function() {
+	$.ajax({
+	   method: "GET",
+	   url: assetsUrl,
+	   data: {
+		   lat: lat,
+		   lon: long,
+		   // begin: startYear-01-01,
+		   // end: endYear-01-01,
+		   api_key: nasaKey
+	   },
+	   success: function(results){
+		   assetResults = results.results;
+		   console.log(results);
+		   fetchResults();
+	   }
+   }).done(function() {
+		   console.log("complete")
+   });
+})

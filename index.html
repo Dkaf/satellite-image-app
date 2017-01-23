@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Satellite image timeline</title>
+		<script src="https://use.fontawesome.com/60c4bd1349.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 		<link rel="stylesheet" href="css/main.css">
 	</head>
@@ -31,12 +32,14 @@
 		</form>
 		<div id="nasa_images">
 		</div>
-		<button type="button" name="pageForward" class="pageButton" id="pageForward">&lt;</button>
-		<button type="button" name="pageBack" class="pageButton" id="pageBack">&gt;</button>
+		<div id="page_button_div">
+			<i class="fa fa-arrow-circle-o-left fa-4x pageButton" id="pageBack" aria-hidden="true"></i>
+			<i class="fa fa-arrow-circle-o-right fa-4x pageButton" id="pageForward" aria-hidden="true"></i>
+		</div>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
 		<script src="js/main.js"></script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=API_Key&callback=initMap" async defer></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-SHaTUo0dFnoiAEnQB5OGN6fMQRmFaUQ&callback=initMap" async defer></script>
 	</body>
 </html>

@@ -16,26 +16,31 @@
 		<form class="dateRange" method="submit">
 			<label for="startYear" class="rangeLabel">Start:</label>
 			<select id="startYear" class="yearSelect" name="Begin">
-				<option value=2013>2013</option>
-				<option value=2014>2014</option>
-				<option value=2015>2015</option>
-				<option value=2016>2016</option>
+				<option value=2013-01-01>2013</option>
+				<option value=2014-01-01>2014</option>
+				<option value=2015-01-01>2015</option>
+				<option value=2016-01-01>2016</option>
 			</select>
 			<label for="endYear" class="rangeLabel">End:</label>
 			<select id="endYear" class="yearSelect" name="End">
-				<option value=2013>2013</option>
-				<option value=2014>2014</option>
-				<option value=2015>2015</option>
-				<option value=2016>2016</option>
+				<option value=2013-12-12>2013</option>
+				<option value=2014-12-12>2014</option>
+				<option value=2015-12-12>2015</option>
+				<option value=2016-12-12>2016</option>
 			</select>
-			<button type="submit" name="submit_button" id="submit_button">Submit</button>
+			<button type="button" name="submit_button" id="submit_button">Submit</button>
 		</form>
 		<div id="nasa_images">
 		</div>
+<<<<<<< HEAD
 		<div id="page_button_div">
 			<i class="fa fa-arrow-circle-o-left fa-4x pageButton" id="pageBack" aria-hidden="true"></i>
 			<i class="fa fa-arrow-circle-o-right fa-4x pageButton" id="pageForward" aria-hidden="true"></i>
 		</div>
+=======
+		<button type="button" name="pageBack" class="pageButton" id="pageBack">&lt;</button>
+		<button type="button" name="pageForward" class="pageButton" id="pageForward">&gt;</button>
+>>>>>>> a9b975c064745fa44188fb8790f7c56c35214fec
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>

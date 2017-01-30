@@ -15,7 +15,7 @@ $(document).ready(function(){
 		page += 1;
 		fetchResults();
 	})
-	$('#pageBack').on('click', function(){
+	$('#pageBack').on('click', function
 		$('#nasa_images img').remove();
 		page -= 1;
 		fetchResults();

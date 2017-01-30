@@ -6,6 +6,8 @@ var page = 1;
 var lat = 0;
 var long = 0;
 var markers = [];
+var start = 0;
+var end = 0;
 
 $(document).ready(function(){
 	$('#pageForward').on('click', function(){
@@ -20,8 +22,8 @@ $(document).ready(function(){
 	})
 })
 var fetchResults = function(){
-	var end = (page * 10) - 1;
-	var start = end - 9;
+ 	end = (page * 10) - 1;
+	start = end - 9;
 	$('.pageButton').show();
 	if (end > assetResults.length - 1) {
 		end = assetResults.length - 1;
@@ -79,7 +81,8 @@ function initMap() {
 
 		 }
 
-$("#submit_button").on('click', function() {
+$("#submit_button").on('click', function(e) {
+	e.preventDefault()
 	$.ajax({
 	   method: "GET",
 	   url: assetsUrl,

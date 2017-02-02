@@ -83,7 +83,7 @@ $("#submit_button").on('click', function(e) {
 	e.preventDefault()
 	$.ajax({
 	   method: "GET",
-	   url: assetsUrl + "/" + lat + "/" + lon,
+	   url: assetsUrl + "/" + lat + "/" + long,
 	   success: function(results){
 		   assetResults = results.results;
 		   console.log(results);

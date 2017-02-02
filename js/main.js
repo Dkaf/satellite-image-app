@@ -1,6 +1,5 @@
-var assetsUrl = 'https://api.nasa.gov/planetary/earth/assets'
-var imageUrl = 'https://api.nasa.gov/planetary/earth/imagery'
-var nasaKey = 'IIbcHBMlLJD6P8iqkyVoxNB4LDT9yt7h9rz5OPUy'
+var assetsUrl = 'https://infinite-caverns-45871.herokuapp.com/assets'
+var imageUrl = 'https://infinite-caverns-45871.herokuapp.com/images'
 var assetResults = [];
 var page = 1;
 var lat = 0;
@@ -15,7 +14,7 @@ $(document).ready(function(){
 		page += 1;
 		fetchResults();
 	})
-	$('#pageBack').on('click', function
+	$('#pageBack').on('click', function(){
 		$('#nasa_images img').remove();
 		page -= 1;
 		fetchResults();
@@ -37,7 +36,6 @@ var fetchResults = function(){
 				lat: lat,
 				lon: long,
 				date: formatDate.format('YYYY-MM-DD'),
-				api_key: nasaKey
 			},
 			success: function(results){
 				console.log(results);
@@ -89,9 +87,6 @@ $("#submit_button").on('click', function(e) {
 	   data: {
 		   lat: lat,
 		   lon: long,
-		   // begin: startYear-01-01,
-		   // end: endYear-01-01,
-		   api_key: nasaKey
 	   },
 	   success: function(results){
 		   assetResults = results.results;

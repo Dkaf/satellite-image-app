@@ -31,12 +31,7 @@ var fetchResults = function(){
 		var formatDate = moment(new Date(assetResults[i].date))
 		$.ajax({
 			method: "GET",
-			url: imageUrl,
-			data: {
-				lat: lat,
-				lon: long,
-				date: formatDate.format('YYYY-MM-DD'),
-			},
+			url: imageUrl + "/" + lat + "/" + long + "/" + formatDate.format('YYYY-MM-DD'),
 			success: function(results){
 				console.log(results);
 				$('#nasa_images').append($("<img>", {"src":results.url, "class":"satellite_img"}));
@@ -85,7 +80,7 @@ $("#submit_button").on('click', function(e) {
 	   method: "GET",
 	   url: assetsUrl + "/" + lat + "/" + long,
 	   success: function(results){
-		   assetResults = results.results;
+		   assetResults = results;
 		   console.log(results);
 		   fetchResults();
 	   }

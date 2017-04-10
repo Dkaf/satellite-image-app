@@ -1,9 +1,9 @@
-var assetsUrl = 'https://infinite-caverns-45871.herokuapp.com/assets'
-var imageUrl = 'https://infinite-caverns-45871.herokuapp.com/images'
-var assetResults = [];
-var page = 1;
 var lat = 0;
 var long = 0;
+var assetsUrl = 'https://infinite-caverns-45871.herokuapp.com/assets/'
+var imageUrl = 'https://infinite-caverns-45871.herokuapp.com/images/'
+var assetResults = [];
+var page = 1;
 var markers = [];
 var start = 0;
 var end = 0;
@@ -31,8 +31,10 @@ var fetchResults = function(){
 		var formatDate = moment(new Date(assetResults[i].date))
 		$.ajax({
 			method: "GET",
-			url: imageUrl + "/" + lat + "/" + long + "/" + formatDate.format('YYYY-MM-DD'),
+			url: imageUrl + lat + "/" + long + "/" + formatDate.format('YYYY-MM-DD'),
 			success: function(results){
+				lat = null;
+				long = null;
 				console.log(results);
 				$('#nasa_images').append($("<img>", {"src":results.url, "class":"satellite_img"}));
 			}
@@ -66,19 +68,21 @@ function initMap() {
 			 })
 
 			 map.addListener('click', function(e) {
-				 lat = e.latLng.lat;
-				 long = e.latLng.lng;
-				 console.log(e.latLng.toJSON());
-
+				 lat = e.latLng.lat();
+				 long = e.latLng.lng();
+				 console.log(e)
+				 console.log(lat)
+				 console.log(long)
 			 })
 
 		 }
 
 $("#submit_button").on('click', function(e) {
+	assetsUrl += lat + "/" + long
 	e.preventDefault()
 	$.ajax({
 	   method: "GET",
-	   url: assetsUrl + "/" + lat + "/" + long,
+	   url: assetsUrl,
 	   success: function(results){
 		   assetResults = results;
 		   console.log(results);

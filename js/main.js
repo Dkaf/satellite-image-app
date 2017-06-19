@@ -33,9 +33,6 @@ var fetchResults = function(){
 			method: "GET",
 			url: imageUrl + lat + "/" + long + "/" + formatDate.format('YYYY-MM-DD'),
 			success: function(results){
-				lat = null;
-				long = null;
-				console.log(results);
 				$('#nasa_images').append($("<img>", {"src":results.url, "class":"satellite_img"}));
 			}
 		})
@@ -70,22 +67,17 @@ function initMap() {
 			 map.addListener('click', function(e) {
 				 lat = e.latLng.lat();
 				 long = e.latLng.lng();
-				 console.log(e)
-				 console.log(lat)
-				 console.log(long)
 			 })
 
 		 }
 
 $("#submit_button").on('click', function(e) {
-	assetsUrl += lat + "/" + long
 	e.preventDefault()
 	$.ajax({
 	   method: "GET",
-	   url: assetsUrl,
+	   url: assetsUrl + lat + "/" + long,
 	   success: function(results){
 		   assetResults = results;
-		   console.log(results);
 		   fetchResults();
 	   }
    }).done(function() {
